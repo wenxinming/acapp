@@ -1,0 +1,11 @@
+--2023-01-18 12:06:18--  https://metro.co.uk/wp-content/uploads/2019/11/blackad02-2132.gif?quality=90
+Resolving metro.co.uk (metro.co.uk)... 192.0.66.24
+Connecting to metro.co.uk (metro.co.uk)|192.0.66.24|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2504614 (2.4M) [image/gif]
+Saving to: ‘background.gif’
+
+background.gif        0%[                  ]       0  --.-KB/s               background.gif        4%[                  ]  99.84K   432KB/s               background.gif       19%[==>               ] 483.61K   966KB/s               background.gif       68%[===========>      ]   1.64M  2.17MB/s               background.gif       82%[=============>    ]   1.97M  2.03MB/s               background.gif      100%[=================>]   2.39M  2.45MB/s    in 1.0s    
+
+2023-01-18 12:06:20 (2.45 MB/s) - ‘background.gif’ saved [2504614/2504614]
+
