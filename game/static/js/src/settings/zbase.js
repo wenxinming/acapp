@@ -5,7 +5,7 @@ class Settings {
         if(this.root.AcWingOS) this.platform = 'ACAPP';
         this.username = "";
         this.photo = "";
-        
+
         this.$settings = $(`
         <div class="ac-game-settings">
             <div class="ac-game-settings-login"> 
@@ -28,7 +28,7 @@ class Settings {
                         </div>
                     </div>
                     <div class="ac-game-settings-error-message">
-                       
+
                     </div>
                     <div class="ac-game-settings-option">
                         注册
@@ -92,7 +92,7 @@ class Settings {
         this.$login_error_message = this.$login.find(".ac-game-settings-error-message");
         this.$login_register = this.$login.find(".ac-game-settings-option");
 
-          this.$login.hide();
+        this.$login.hide();
 
         this.$register = this.$settings.find(".ac-game-settings-register");
         this.$register_username = this.$register.find(".ac-game-settings-username input"); 
@@ -101,7 +101,7 @@ class Settings {
         this.$register_submit = this.$register.find(".ac-game-settings-submit button");
         this.$register_error_message = this.$register.find(".ac-game-settings-error-message");
         this.$register_login = this.$register.find(".ac-game-settings-option");
-        
+
         this.$register.hide();
 
         this.$acwing_login = this.$settings.find('.ac-game-settings-acwing img');
@@ -156,7 +156,6 @@ class Settings {
             url:"https://app4905.acapp.acwing.com.cn/settings/acwing/web/apply_code/",
             type: "GET",
             success: function(resp) {
-                console.log(resp);
                 if(resp.result === "success") {
                     window.location.replace(resp.apply_code_url);
                 }
@@ -178,7 +177,6 @@ class Settings {
                 password: password,
             },
             success: function(resp) {
-                console.log(resp);
                 if(resp.result === "success") {
                     location.reload();;
                 } else {
@@ -205,7 +203,6 @@ class Settings {
             },
 
             success:function(resp) {
-                console.log(resp);
                 if(resp.result === "success") {
                     location.reload();
                 } else {
@@ -219,18 +216,20 @@ class Settings {
     }
 
     logout_on_remote() {
-        if(this.platform === "ACAPP") return false;
+        if(this.platform === "ACAPP") {
+            this.root.AcWingOS.api.window.close();
+        } else {
 
-        $.ajax({
-            url: "https://app4905.acapp.acwing.com.cn/settings/logout/",
-            type: "GET",
-            success: function(resp) {
-                console.log(resp);
-                if(resp.result === "success") {
-                    location.reload();
+            $.ajax({
+                url: "https://app4905.acapp.acwing.com.cn/settings/logout/",
+                type: "GET",
+                success: function(resp) {
+                    if(resp.result === "success") {
+                        location.reload();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     login() {
@@ -242,13 +241,12 @@ class Settings {
         this.$login.hide();
         this.$register.show();
     }
-    
+
 
     acapp_login(appid, redirect_uri, scope, state) {
         let outer = this;
 
         this.root.AcWingOS.api.oauth2.authorize(appid, redirect_uri, scope, state, function(resp) {
-            console.log(resp);
             if(resp.result === "success") {
                 outer.username = resp.username;
                 outer.photo = resp.photo;
@@ -283,7 +281,6 @@ class Settings {
                 platform: outer.platform,
             },
             success: function(resp) {
-                console.log(resp);
                 if (resp.result === 'success') {
                     outer.username = resp.username;
                     outer.photo = resp.photo;
@@ -295,7 +292,7 @@ class Settings {
             }
         });
     }
-    
+
     hide() {
         this.$settings.hide();
     }
